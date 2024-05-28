@@ -64,7 +64,8 @@ class SnowflakeSink(SQLSink):
 
     @property
     def table_name(self) -> str:
-        return super().table_name.upper()
+        table_name = self.config.get("output_table_name") or super().table_name
+        return table_name.upper()
 
     def setup(self) -> None:
         """Set up Sink.

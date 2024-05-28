@@ -79,6 +79,12 @@ class TargetSnowflake(SQLTarget):
             default=True,
             description="Whether to remove batch files after processing.",
         ),
+        th.Property(
+            "output_table_name",
+            th.StringType,
+            required=True,
+            description="The name of the output table to be created/updated in Snowflake's destination. It should not contain spaces and special characters.",
+        ),
     ).to_dict()
 
     default_sink_class = SnowflakeSink
