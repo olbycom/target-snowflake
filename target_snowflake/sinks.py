@@ -64,7 +64,11 @@ class SnowflakeSink(SQLSink):
 
     @property
     def table_name(self) -> str:
-        table_name = self.config.get("output_table_name") or super().table_name
+        table_name = (
+            self.conform_name(self.config.get("output_table_name"), "table")
+            if self.config.get("output_table_name")
+            else super().table_name
+        )
         return table_name.upper()
 
     def setup(self) -> None:
